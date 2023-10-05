@@ -55,14 +55,19 @@ flatpickr("#datetime-picker", options);
 
 // Event listener для "Start" button
 document.querySelector('[data-start]').addEventListener('click', () => {
-  const selectedDate = new Date(document.querySelector('#datetime-picker').value);
-  const timeDifference = calculateTimeDifference(selectedDate);
-
-  if (!isFutureDate(selectedDate)) {
-    window.alert('Please choose a date in the future');
+  let inputDateValue = document.querySelector('#datetime-picker').value;
+  if (!inputDateValue) {
+    alert('Please choose a valid date');
     return;
   }
 
+  let selectedDate = new Date(inputDateValue);
+  if (!isFutureDate(selectedDate)) {
+    alert('Please choose a date in the future');
+    return;
+  }
+
+  let timeDifference = calculateTimeDifference(selectedDate);
   updateTimerDisplay(timeDifference);
 
 
