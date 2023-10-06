@@ -71,18 +71,26 @@ document.querySelector('[data-start]').addEventListener('click', () => {
   updateTimerDisplay(timeDifference);
 
 
-  function countdown() {
-    if (timeDifference <= 0) {
-      document.querySelector('[data-start]').setAttribute('disabled', 'true');
-    } else {
-      timeDifference -= 1000;
-      updateTimerDisplay(timeDifference);
+  document.querySelector('[data-start]').setAttribute('disabled', 'true');
+  document.querySelector('#datetime-picker').setAttribute('disabled', 'true');
+  
+
+function countdown() {
+  if (timeDifference <= 0) {
+    document.querySelector('#datetime-picker').removeAttribute('disabled');
+  } else {
+    timeDifference -= 1000;
+    updateTimerDisplay(timeDifference);
+    if (timeDifference > 0) {
       setTimeout(countdown, 1000);
     }
   }
+  }
+  
 
   countdown();
 });
+
 
 
 
