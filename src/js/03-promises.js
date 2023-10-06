@@ -17,7 +17,7 @@ document.querySelector('.form').addEventListener('submit', (event) => {
   const step = parseInt(document.querySelector('input[name="step"]').value);
   const amount = parseInt(document.querySelector('input[name="amount"]').value);
 
-  for (let i = 0; i < amount; i++) {
+  for (let i = 1; i < amount + 1; i++) {
     createPromise(i, delay + i * step)
       .then(({ position, delay }) => {
         console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);

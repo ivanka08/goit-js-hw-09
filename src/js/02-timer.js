@@ -77,6 +77,7 @@ document.querySelector('[data-start]').addEventListener('click', () => {
 
 function countdown() {
   if (timeDifference <= 0) {
+    document.querySelector('[data-start]').removeAttribute('disabled');
     document.querySelector('#datetime-picker').removeAttribute('disabled');
   } else {
     timeDifference -= 1000;
@@ -87,7 +88,6 @@ function countdown() {
   }
   }
   
-
   countdown();
 });
 
