@@ -53,6 +53,8 @@ const options = {
 };
 flatpickr("#datetime-picker", options);
 
+let intervalId;
+
 // Event listener для "Start" button
 document.querySelector('[data-start]').addEventListener('click', () => {
   let inputDateValue = document.querySelector('#datetime-picker').value;
@@ -75,20 +77,16 @@ document.querySelector('[data-start]').addEventListener('click', () => {
   document.querySelector('#datetime-picker').setAttribute('disabled', 'true');
   
 
-function countdown() {
-  if (timeDifference <= 0) {
-    document.querySelector('[data-start]').removeAttribute('disabled');
-    document.querySelector('#datetime-picker').removeAttribute('disabled');
-  } else {
-    timeDifference -= 1000;
-    updateTimerDisplay(timeDifference);
-    if (timeDifference > 0) {
-      setTimeout(countdown, 1000);
+intervalId = setInterval(() => {
+    if (timeDifference <= 0) {
+      clearInterval(intervalId);
+      document.querySelector('[data-start]').removeAttribute('disabled');
+      document.querySelector('#datetime-picker').removeAttribute('disabled');
+    } else {
+      updateTimerDisplay(timeDifference);
+      timeDifference -= 1000;
     }
-  }
-  }
-  
-  countdown();
+  }, 1000);
 });
 
 
